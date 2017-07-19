@@ -9,7 +9,7 @@ method add-experiment(Set $name, Experiment $exp) {
 	}
 }
 
-method find-and-run-tests(Str $name, Int \id) {
+method find-and-run-tests(Str $name, \id) {
 	%!experiments{$name}
 		.map(*.get-vars: id)
 		.reduce: -> %init, %item {
