@@ -17,7 +17,7 @@ method new($name, %rules, *@vars) {
 method get-vars(\id) {
 	do if $!bouncer.should-participate: id {
 		with $!track.segment(id) -> $group {
-			return % = test => {:$!name, :$group}, |%!variables{$group}
+			return % = "test.$!name" => $group, |%!variables{$group}
 		}
 	}
 	{}
