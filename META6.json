@@ -1,0 +1,37 @@
+{
+  "name": "BigJay",
+  "support": {
+    "source": "Write me!"
+  },
+  "perl": "6.*",
+  "build-depends": [
+    "JSON::Class",
+    "Digest::MurmurHash3"
+  ],
+  "scripts": {
+    "test": "zef test ."
+  },
+  "depends": [
+    "Cro::HTTP",
+    "JSON::Class",
+    "Digest::MurmurHash3"
+  ],
+  "tags": [
+    ""
+  ],
+  "license": "Write me!",
+  "test-depends": [
+    "JSON::Class",
+    "Digest::MurmurHash3"
+  ],
+  "provides": {
+    "Routes.pm6": "lib/Routes.pm6"
+  },
+  "production": false,
+  "version": "0.0.1",
+  "authors": [
+    ""
+  ],
+  "description": "Write me!",
+  "meta6": "0"
+}

@@ -1,0 +1,15 @@
+---
+name: BigJay
+cro: 1
+id: BigJay
+env:  []
+links:  []
+entrypoint: service.p6
+endpoints: 
+  - 
+    port-env: BIGJAY_PORT
+    name: HTTP
+    protocol: http
+    host-env: BIGJAY_HOST
+    id: http
+...
