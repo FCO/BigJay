@@ -1,18 +1,18 @@
 # BigJay
 
 ```
-perl6 -Ilib -MSegmenter -MTrackingGroup -MHypothesis -MExperiment -e '
+perl6 -Ilib -MTag -MSegmenter -MTrackingGroup -MHypothesis -MExperiment -e '
 
-my Experiment $a .= new: :name<wer>;
+my Experiment $a .= new: "qwer", \("A", :percent(.25)), \("B", :variables{bla => 42}, :percent(.25));
 
-$a.add-hypothesis: Hypothesis.new(:name<A>, :experiment($a)), :percent(.25);
-$a.add-hypothesis: Hypothesis.new(:name<B>, :experiment($a)), :percent(.25);
 
-my TrackingGroup $t .= new: :4id;
-
+my TrackingGroup $t .= new: :name<bla>;
 $t.add-experiment: $a;
 
-my Segmenter $s .= new: :tracks[$t];
-say $s.pick($_).keys.map: {.experiment.name => .name} for ^10;
+my $tag = Tag.new: "tag1";
+$tag.add-track: $t;
+
+my Segmenter $s .= new;
+say $s.pick($_, :tags<tag1 tag2>).keys.map: {.experiment.name => (name => .name, vars => .variables).Hash} for ^20;
 '
 ```
