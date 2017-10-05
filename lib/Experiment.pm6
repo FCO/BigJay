@@ -32,3 +32,5 @@ multi method add-hypothesis(::?CLASS:D: Hypothesis $h, Rat :$percent = 0.0) {
 method Positional(::?CLASS:D:)		{$!hypothesis.pairs.sort: *.key.name}
 method Array(::?CLASS:D:)			{$.Positional.Array}
 method Mix(::?CLASS:D: --> Mix())	{$.Positional}
+
+method experiments(::?CLASS:U: *@keys) {%cache{@keys || *}}

@@ -1,12 +1,18 @@
 unit class Tag;
-use TrackingGroup;
+use Experiment;
 
 my Tag %cache;
 has     $.name is required;
-has     $.tracks = Empty;
+has     $.experiment = Empty;
 
-method add-track(TrackingGroup $track) {
-    $!tracks = set |$!tracks.keys, $track;
+# TODO: get experiments
+
+multi method add-experiment(Str $experiment-name) {
+    $!experiment = set |$!experiment.keys, Experiment.experiments{$experiment-name};
+}
+
+multi method add-experiment(Experiment $experiment) {
+    $!experiment = set |$!experiment.keys, $experiment;
 }
 
 method new($name) {
@@ -15,4 +21,14 @@ method new($name) {
 	$new
 }
 
-method tags(::?CLASS:U:) {%cache}
+multi method tags(::?CLASS:U: @tags) {
+    %cache{@tags}
+}
+
+multi method tags(::?CLASS:U: []) {
+    %cache.values
+}
+
+multi method tags(::?CLASS:U: --> Hash()) {
+    %cache
+}
