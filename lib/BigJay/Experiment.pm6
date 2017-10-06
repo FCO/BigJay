@@ -1,9 +1,9 @@
-unit class Experiment;
-use Hypothesis;
+unit class BigJay::Experiment;
+use BigJay::Hypothesis;
 
-my Experiment %cache;
-has Str $.name is required;
-has Mix $.hypothesis;
+my BigJay::Experiment	%cache;
+has Str 				$.name is required;
+has Mix 				$.hypothesis;
 
 proto method new(|) {
 	my $new = {*};
@@ -22,10 +22,10 @@ multi method new(Str $name, @hipoteses = []) {
 }
 
 multi method add-hypothesis(::?CLASS:D: Str $name, :$variables = {}, Rat :$percent = 0.0) {
-	self.add-hypothesis: Hypothesis.new(:$name, :$variables, :experiment(self)), :$percent;
+	self.add-hypothesis: BigJay::Hypothesis.new(:$name, :$variables, :experiment(self)), :$percent;
 }
 
-multi method add-hypothesis(::?CLASS:D: Hypothesis $h, Rat :$percent = 0.0) {
+multi method add-hypothesis(::?CLASS:D: BigJay::Hypothesis $h, Rat :$percent = 0.0) {
 	$!hypothesis = Mix.new-from-pairs: |$!hypothesis.pairs.grep(*.key !=== $h), $h => $percent
 }
 

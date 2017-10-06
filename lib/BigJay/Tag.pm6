@@ -1,15 +1,15 @@
-unit class Tag;
-use Experiment;
+unit class BigJay::Tag;
+use BigJay::Experiment;
 
-my Tag %cache;
-has     $.name is required;
-has     $.experiment = Empty;
+my BigJay::Tag  %cache;
+has             $.name is required;
+has             $.experiment = Empty;
 
 multi method add-experiment(Str $experiment-name) {
-    $!experiment = set |$!experiment.keys, Experiment.experiments{$experiment-name};
+    $!experiment = set |$!experiment.keys, BigJay::Experiment.experiments{$experiment-name};
 }
 
-multi method add-experiment(Experiment $experiment) {
+multi method add-experiment(BigJay::Experiment $experiment) {
     $!experiment = set |$!experiment.keys, $experiment;
 }
 

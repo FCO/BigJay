@@ -1,4 +1,4 @@
-unit class Hypothesis;
+unit class BigJay::Hypothesis;
 
 method WHICH(::?CLASS:D:) {"Hypothesis|$!name"}
 
