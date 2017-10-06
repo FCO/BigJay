@@ -8,8 +8,7 @@ has TrackingGroup:U	$.tracks = TrackingGroup;
 
 method pick(Str() \id, Set() :$tracks = $!tracks.tracks.keys.Set, Set() :$tags = Empty --> Set()) {
 	my @tracks = |$!tracks.tracks{|$tracks.keys};
-	# TODO: Tag.get-experiments: $tag
-	my $tag-exp = [(|)] |Tag.tags($tags.keys).grep(*.defined).map({.experiment.keys>>.hypothesis>>.keys});
+	my $tag-exp = Tag.hypotheses: $tags;
 	do for @tracks -> TrackingGroup $track {
 		my $number = murmurhash3_32(id, $track.id) % $!dp / $!dp;
 		my @options := $track.Array;

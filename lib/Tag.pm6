@@ -5,8 +5,6 @@ my Tag %cache;
 has     $.name is required;
 has     $.experiment = Empty;
 
-# TODO: get experiments
-
 multi method add-experiment(Str $experiment-name) {
     $!experiment = set |$!experiment.keys, Experiment.experiments{$experiment-name};
 }
@@ -21,6 +19,10 @@ method new($name) {
 	$new
 }
 
+multi method tags(::?CLASS:U: Whatever) {
+    %cache{*}
+}
+
 multi method tags(::?CLASS:U: @tags) {
     %cache{@tags}
 }
@@ -31,4 +33,12 @@ multi method tags(::?CLASS:U: []) {
 
 multi method tags(::?CLASS:U: --> Hash()) {
     %cache
+}
+
+method experiments(::CLASS:U: Set() $tags = Empty --> Set()) {
+	set |self.tags($tags.keys).grep(*.defined).map: {.experiment.keys};
+}
+
+method hypotheses(::CLASS:U: Set() $tags = Empty --> Set()) {
+    set |self.experiments($tags).keys.map: {.hypothesis.keys}
 }
